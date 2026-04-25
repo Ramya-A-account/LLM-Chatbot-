@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>EduHub — Student Opportunity Finder</title>
+  <link rel="stylesheet" href="style.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+</head>
+<body>
+
+  <div class="bg-orb orb1"></div>
+  <div class="bg-orb orb2"></div>
+  <div class="bg-orb orb3"></div>
+
+  <div class="app-shell">
+
+    <!-- ══════════ SIDEBAR ══════════ -->
+    <aside class="sidebar" id="sidebar">
+
+      <div class="sidebar-top">
+        <div class="brand">
+          <div class="brand-icon">🎓</div>
+          <span class="brand-name">EduHub</span>
+        </div>
+        <button class="new-chat-btn" onclick="clearChat()">+ New</button>
+      </div>
+
+      <!-- Mode Toggle -->
+      <div class="mode-toggle">
+        <button class="mode-btn active" id="btnSchool" onclick="setMode('school')">🏫 School</button>
+        <button class="mode-btn" id="btnCollege" onclick="setMode('college')">🎓 College</button>
+      </div>
+
+      <!-- School Quicklinks -->
+      <div class="quick-section" id="schoolQuicks">
+        <p class="qs-label">School Students</p>
+        <button class="qs-btn" onclick="quickSearch('school_events')"><span class="qs-icon">🔬</span>Project Exhibitions</button>
+        <button class="qs-btn" onclick="quickSearch('sports')"><span class="qs-icon">⚽</span>Sports Events</button>
+        <button class="qs-btn" onclick="sendQuick('Find upcoming olympiad and scholarship exams for school students India 2025 NTSE KVPY')"><span class="qs-icon">🏆</span>Olympiads & Scholarships</button>
+        <button class="qs-btn" onclick="sendQuick('Find inter-school cultural fest quiz competitions debate events 2025')"><span class="qs-icon">🎭</span>Cultural & Quiz Events</button>
+      </div>
+
+      <!-- College Quicklinks -->
+      <div class="quick-section hidden" id="collegeQuicks">
+        <p class="qs-label">Technical</p>
+        <button class="qs-btn" onclick="quickSearch('hackathons')"><span class="qs-icon">💻</span>Hackathons</button>
+        <button class="qs-btn" onclick="quickSearch('symposiums')"><span class="qs-icon">📡</span>Symposiums & Fests</button>
+        <button class="qs-btn" onclick="quickSearch('conferences')"><span class="qs-icon">📄</span>Paper Presentations</button>
+        <button class="qs-btn" onclick="quickSearch('coding')"><span class="qs-icon">🧩</span>Coding Contests</button>
+
+        <p class="qs-label" style="margin-top:14px">Career</p>
+        <button class="qs-btn" onclick="quickSearch('jobs')"><span class="qs-icon">💼</span>Placement Drives</button>
+        <button class="qs-btn" onclick="quickSearch('internships')"><span class="qs-icon">🚀</span>Internships</button>
+        <button class="qs-btn" onclick="quickSearch('govt_jobs')"><span class="qs-icon">🏛️</span>Govt Jobs</button>
+        <button class="qs-btn" onclick="sendQuick('Give tips for placement preparation resume building interview skills freshers')"><span class="qs-icon">📋</span>Placement Prep Tips</button>
+
+        <p class="qs-label" style="margin-top:14px">Non-Technical</p>
+        <button class="qs-btn" onclick="sendQuick('Find management fests business case competitions cultural events colleges 2025')"><span class="qs-icon">🎪</span>College Fests</button>
+        <button class="qs-btn" onclick="quickSearch('mun')"><span class="qs-icon">🎤</span>MUNs & Debates</button>
+      </div>
+
+      <div class="sidebar-footer">
+        <div class="ai-badge">
+          <span class="pulse-dot"></span>
+          <span>Groq LLaMA-3 · Free API</span>
+        </div>
+      </div>
+    </aside>
+
+    <!-- ══════════ MAIN ══════════ -->
+    <main class="main">
+
+      <header class="topbar">
+        <button class="menu-btn" onclick="toggleSidebar()">☰</button>
+        <div class="topbar-title">
+          EduHub <span class="topbar-sub">Student Opportunity Finder</span>
+        </div>
+        <input type="text" id="locationInput" class="location-input" placeholder="📍 Your city..." value="India"/>
+      </header>
+
+      <!-- Messages -->
+      <div class="messages" id="messages">
+        <div class="welcome" id="welcomeBlock">
+          <div class="welcome-badge">⚡ Groq LLaMA-3 · 100% Free · No Credit Card</div>
+          <h2 class="welcome-title">Find Your Next <em>Big Opportunity</em></h2>
+          <p class="welcome-sub">Hackathons · Symposiums · Internships · Placement Drives · School Fests · Sports · Paper Presentations</p>
+
+          <div class="student-cards">
+            <div class="scard" onclick="setMode('school'); sendQuick('I am a school student. Show me upcoming project exhibitions science fairs sports events India 2025')">
+              <div class="scard-icon">🏫</div>
+              <div class="scard-title">School Student</div>
+              <div class="scard-desc">Exhibitions · Sports · Olympiads · Cultural Fests</div>
+            </div>
+            <div class="scard" onclick="setMode('college'); sendQuick('I am a college student. Show me upcoming hackathons symposiums internships placement drives India 2025')">
+              <div class="scard-icon">🎓</div>
+              <div class="scard-title">College Student</div>
+              <div class="scard-desc">Hackathons · Jobs · Symposiums · Papers</div>
+            </div>
+          </div>
+
+          <div class="welcome-chips">
+            <button class="chip" onclick="sendQuick('Top hackathons India 2025')">🔥 Top Hackathons 2025</button>
+            <button class="chip" onclick="sendQuick('Paid internships CSE students Hyderabad 2025')">💰 Paid Internships</button>
+            <button class="chip" onclick="sendQuick('Smart India Hackathon 2025 registration eligibility details')">🇮🇳 SIH 2025</button>
+            <button class="chip" onclick="sendQuick('NTSE scholarship exam class 10 2025')">📚 School Scholarships</button>
+            <button class="chip" onclick="sendQuick('Off-campus placement drives 2025 batch engineers India')">👩‍💻 Off-Campus Drives</button>
+            <button class="chip" onclick="sendQuick('Paper presentation conferences engineering students 2025')">📑 Paper Calls</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Input -->
+      <div class="input-bar">
+        <div class="input-box">
+          <textarea
+            id="chatInput"
+            placeholder="Ask about hackathons, internships, school events, placements..."
+            rows="1"
+            onkeydown="handleKey(event)"
+            oninput="autoResize(this)"
+          ></textarea>
+          <button class="send-btn" id="sendBtn" onclick="sendMessage()">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <line x1="22" y1="2" x2="11" y2="13"/>
+              <polygon points="22 2 15 22 11 13 2 9 22 2"/>
+            </svg>
+          </button>
+        </div>
+        <p class="input-hint">Backend: localhost:5000 · Groq LLaMA-3 · Enter to send · Shift+Enter for new line</p>
+      </div>
+
+    </main>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
